@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <h4>New Menu Item</h4>
+    <form autocomplete="off"
+          action="#"
+          th:action="@{/process}"
+          enctype="multipart/form-data"
+          th:object="${menu}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <label>Item:</label><input type="text" th:field="*{item}" />
+        <span th:if="${#fields.hasErrors('item')}"
+              th:errors="*{item}"></span><br/>
+
+        <label>Price:</label><input type="text" th:field="*{price}" />
+        <span th:if="${#fields.hasErrors('price')}"
+              th:errors="*{price}"></span><br/>
+
+        <label>Description:</label><input type="text" th:field="*{description}" />
+        <span th:if="${#fields.hasErrors('description')}"
+              th:errors="*{description}"></span><br/>
+
+        <label>Image:</label><input type="file" name="file" /><br>
+
+
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>

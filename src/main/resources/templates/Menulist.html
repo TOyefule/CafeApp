@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head th:insert="base :: headstuff"></head>
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="py-5">
+</div>
+<a href="/add">Add a Menu item</a><br />
+<table class="table">
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Picture</th>
+        <td>Actions</td>
+    </tr>
+    <tr th:each="menu2 : ${menu}">
+        <td th:text="${menu2.price}"></td>
+        <td th:text="${menu2.description}"></td>
+        <td>
+            <div  th:if="${menu2.image} != null">
+                <img style="width: 150px;" th:src="${menu2.image}" />
+            </div>
+        </td>
+        <td>
+            <a th:href="@{/update/{id}(id=${menu2.id})}">Update</a>
+            <a th:href="@{/detail/{id}(id=${menu2.id})}">Details</a>
+            <a th:href="@{/delete/{id}(id=${menu2.id})}">Delete</a>
+        </td></tr>
+</table>
+
+
+
+
+<nav th:replace="base :: footer"></nav>
+<span th:replace="base :: jslinks"></span>
+</div>
+</body>
+</html>
